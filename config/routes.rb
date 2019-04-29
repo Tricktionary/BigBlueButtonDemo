@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   root :to => "core#index"
 
   #POST REQUEST 
-  post "create" => "core#create_and_join"
+  post "create" => "core#create_and_join_room"
   
 end

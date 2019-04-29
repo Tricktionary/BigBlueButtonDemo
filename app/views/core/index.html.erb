@@ -1,11 +1,15 @@
-<center><h2>BigBlueButton Test Application</h2></center>
+<center><h2 style="padding-top:40px">BigBlueButton Test Application</h2></center>
 
 <div style="padding-left:100px">
     <h3>Create or Join a demo session</h3>
     
     <div class="ui-form">
         <%= form_tag('/create',method:"post")%>
-        <%= text%>
+        
+        <%= text_field_tag(:room_id,"",{placeholder:"Room ID", required:""})%> <br>
+
+        <%= text_field_tag(:username,"",{ placeholder:"Your username", required:""})%> <br>
+        <%= password_field_tag(:password,"",{placeholder:"password", required:""})%> <br>
         <%= submit_tag("Join Room", class: "ui button green")%>
     </div>
 </div>

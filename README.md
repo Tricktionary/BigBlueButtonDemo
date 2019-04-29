@@ -1,25 +1,8 @@
-# README
+# BigBlueButtonDemo
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a BigBlueButton demo that show's the capabilities of the ruby gem
 
-Things you may want to cover:
+### How to run
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# BBB-Demo
+- Be on ruby 2.5.1
+ 
