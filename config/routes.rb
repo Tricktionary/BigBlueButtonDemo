@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
-  get 'core/index'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  #Set root of the application to be index view 
+  root :to => "core#index"
+
+  #POST REQUEST 
+  post "create" => "core#create_and_join"
+  
 end
