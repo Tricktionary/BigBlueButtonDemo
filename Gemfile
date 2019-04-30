@@ -5,6 +5,8 @@ ruby '2.6.1'
 
 gem 'bigbluebutton-api-ruby', '~> 1.7'
 
+gem 'jquery-rails'
+
 gem 'semantic-ui-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'

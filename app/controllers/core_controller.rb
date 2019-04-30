@@ -12,17 +12,24 @@ class CoreController < ApplicationController
   ## required index function to load page
   def index
     recordings_json = @@api.get_recordings[:recordings]
-    puts recordings_json
     
-    recordings_url = []
+    recordings_objects = []
     for recording in recordings_json
-      recordings_url.push(recording[:playback][:format][:url])
-    end
-    @recordings = recordings_url
+      recording_object = {}
+
+      recording_url = recording[:playback][:format][:url]
+      recording_id = recording[:recordID]
+
+      recording_object['id'] = recording_id
+      recording_object['url'] = recording_url
+
+      recordings_objects.push(recording_object)
+     end
+    @recordings = recordings_objects
   end
 
   def delete_recording
-      @@api.delete_recordings()
+      @@api.delete_recordings(request.params[:recording_id])
   end 
 
   ## Create meeting
