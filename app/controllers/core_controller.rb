@@ -1,6 +1,7 @@
 require 'bigbluebutton_api'
 
 class CoreController < ApplicationController
+  skip_before_action :verify_authenticity_token ##Ignore authentication before removal kinda sketchy
   include InitHelper
 
   ## Calls helper function to initialize the API
@@ -70,6 +71,7 @@ class CoreController < ApplicationController
       create_meeting(meeting_name,meeting_id,password)
       join_meeting(meeting_id,username,'123')
     end
+     
   end
 
 end
