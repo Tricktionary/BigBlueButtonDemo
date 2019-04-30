@@ -3,48 +3,44 @@ require 'bigbluebutton_api'
 class CoreController < ApplicationController
   include InitHelper
 
+  ## required index function to load page
+  def index
+    puts 'Homepage'
+  end
+
   ## Calls helper function to initialize the API
   def initialize
     super 
     @@api = initialize_api
-  end 
-
-  ## Create of join meeting 
-  def create_and_join_room
-    create_room(request.params[:username],request.params[:room_id]) 
-    join_room(request.params[:room_id],request.params[:username],request.params[:password])
-  end 
-
-  ## Create Room for user to join
-  def create_room(username,room_id)
-    meeting_name = username+ "'s room"
-    meeting_id = room_id
-    options = {
-      moderatorPW: ENV['DEMO_MP'] || 'mp',
-      attendeePW: ENV['DEMO_AP'] || 'ap',
-      record: false,
-      autoStartRecording: false,
-      logoutURL: root_url
-    }
-
-    if @@api.is_meeting_running?(meeting_id)
-      puts "The meeting is already running"
-    else
-      @@api.create_meeting(meeting_name, meeting_id, options)
-      puts "Just created the meeting"
-     end 
   end
 
-  ## Join Room based on parameter given
-  def join_room(room_id,username,password)
-    url = @@api.join_meeting_url(room_id,username,password)
-    puts "Joining meeting at " + url
+  ## Create meeting
+  def create_meeting(meeting_name,meeting_id)
+    options = {
+      :attendeePW => "321",
+      :moderatorPW => "123",
+      :welcome => "Welcome here!",
+      :dialNumber => 5190909090,
+      :voiceBridge => 76543,
+      :logoutURL => "http://mconf.org",
+      :record => true,
+      :duration => 100000,
+      :maxParticipants => 25,
+      :meta_category => "Remote Class"
+    }
+    @@api.create_meeting(meeting_name,meeting_id,options)
+  end 
+
+  ## Join meeting
+  def join_meeting(meeting_id,username,password)
+    url = @@api.join_meeting_url(meeting_id,username,'123')
     redirect_to url
   end 
 
-  ## required index function to load page
-  def index
-    puts 'Homepage'
+  ## Create and join meeting
+  def create_and_join_meeting
+    create_meeting(request.params[:meeting_name],request.params[:meeting_id])
+    join_meeting(request.params[:meeting_id],'Test','123')
   end
 
 end

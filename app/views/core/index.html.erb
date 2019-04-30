@@ -1,15 +1,24 @@
-<center><h2 style="padding-top:40px">BigBlueButton Test Application</h2></center>
+<center><h1 style="padding-top:40px">BigBlueButton Test Application</h1></center>
 
-<div style="padding-left:100px">
-    <h3>Create or Join a demo session</h3>
-    
-    <div class="ui-form">
-        <%= form_tag('/create',method:"post")%>
-        
-        <%= text_field_tag(:room_id,"",{placeholder:"Room ID", required:""})%> <br>
-
-        <%= text_field_tag(:username,"",{ placeholder:"Your username", required:""})%> <br>
-        <%= password_field_tag(:password,"",{placeholder:"password", required:""})%> <br>
-        <%= submit_tag("Join Room", class: "ui button green")%>
+<!--
+    <div style="margin-top:50px">
+        <h2>Join a Session</h2>
+        <form class="ui-form">
+            <%= form_tag('/join_demo',method:"post")%>
+            <%= text_field_tag(:username,"",{placeholder:"Name"})%> <br>
+            <%= submit_tag("Join Room", class: "ui button green")%>
+        </form>
     </div>
-</div>
+-->
+
+<center>
+    <div style="margin-top:20px">
+        <h2>Create a meeting room</h2>
+        <div class="ui-form">
+            <%= form_tag('create_meeting',method:"post")%>
+            <%= text_field_tag(:meeting_name,"",{placeholder:"Meeting Name",required:""})%>
+            <%= text_field_tag(:meeting_id,"",{placeholder:"Meeting ID",required:""})%>
+            <%= submit_tag("Create Room", class: "ui button green")%>
+        </div>
+    </div>
+</center>
