@@ -17,5 +17,13 @@
 
 function delete_recording(element){
     let recording_id = element.getAttribute("data-id");
-    $.post()
+    $.post("/delete_recording",{recording_id},function(){
+        location.reload();
+    })
+}
+
+function open_video(element){
+    let recording_url = element.getAttribute("data-url");
+    let win = window.open(recording_url, '_blank');
+    win.focus();
 }

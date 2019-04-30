@@ -1,3 +1,4 @@
+<%= csrf_meta_tags %>
 <center><h1 style="padding-top:40px; padding-bottom:80px">BigBlueButton Test Application</h1></center>
 
 <div style=" margin-left:15%; width:70%">
@@ -36,8 +37,8 @@
         <tbody>
             <% @recordings.each do |recording| %>
                 <tr>
-                    <td>
-                        <a href=<%=recording["url"]%>> <%=recording["id"]%> </a>  
+                    <td data-url=<%=recording["url"]%> onclick="open_video(this)">
+                        <%=recording["id"]%> 
                     </td>
                     <td data-id=<%=recording["id"]%> onclick="delete_recording(this)">
                         Delete

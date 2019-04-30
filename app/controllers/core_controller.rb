@@ -28,8 +28,9 @@ class CoreController < ApplicationController
     @recordings = recordings_objects
   end
 
-  def delete_recording
-      @@api.delete_recordings(request.params[:recording_id])
+  def delete_recording()
+    puts request.params[:recording_id]
+    @@api.delete_recordings(request.params[:recording_id])
   end 
 
   ## Create meeting
