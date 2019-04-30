@@ -11,8 +11,8 @@ class CoreController < ApplicationController
 
   ## Create of join meeting 
   def create_and_join_room
-    ##Create the room if as a safety measure
     create_room(request.params[:username],request.params[:room_id]) 
+    join_room(request.params[:room_id],request.params[:username],request.params[:password])
   end 
 
   ## Create Room for user to join
@@ -32,13 +32,14 @@ class CoreController < ApplicationController
     else
       @@api.create_meeting(meeting_name, meeting_id, options)
       puts "Just created the meeting"
-      return true
-    end 
+     end 
   end
 
   ## Join Room based on parameter given
-  def join_room(username,password,id)
-  
+  def join_room(room_id,username,password)
+    url = @@api.join_meeting_url(room_id,username,password)
+    puts "Joining meeting at " + url
+    redirect_to url
   end 
 
   ## required index function to load page
