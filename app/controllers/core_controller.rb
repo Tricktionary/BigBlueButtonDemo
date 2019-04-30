@@ -15,11 +15,12 @@ class CoreController < ApplicationController
   end
 
   ## Create meeting
-  def create_meeting(meeting_name,meeting_id)
+  def create_meeting(meeting_name,meeting_id,password)
+    #Default params pulled from the api docs
     options = {
-      :attendeePW => "321",
+      :attendeePW => password,
       :moderatorPW => "123",
-      :welcome => "Welcome here!",
+      :welcome => "Whats up!",
       :dialNumber => 5190909090,
       :voiceBridge => 76543,
       :logoutURL => "http://mconf.org",
@@ -33,14 +34,23 @@ class CoreController < ApplicationController
 
   ## Join meeting
   def join_meeting(meeting_id,username,password)
-    url = @@api.join_meeting_url(meeting_id,username,'123')
+    url = @@api.join_meeting_url(meeting_id,username,password)
     redirect_to url
   end 
 
   ## Create and join meeting
   def create_and_join_meeting
-    create_meeting(request.params[:meeting_name],request.params[:meeting_id])
-    join_meeting(request.params[:meeting_id],'Test','123')
+    meeting_id = request.params[:meeting_id]
+    meeting_name = request.params[:meeting_name]
+    username = request.params[:username]
+    password = request.params[:password]
+
+    if @@api.is_meeting_running?(meeting_id)
+       join_meeting(meeting_id,username,password)
+    else
+      create_meeting(meeting_name,meeting_id,password)
+      join_meeting(meeting_id,username,'123')
+    end
   end
 
 end
