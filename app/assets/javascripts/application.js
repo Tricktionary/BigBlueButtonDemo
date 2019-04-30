@@ -14,3 +14,8 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+function delete_recording(element){
+    let recording_id = element.getAttribute("data-id");
+    $.post()
+}
