@@ -3,16 +3,27 @@ require 'bigbluebutton_api'
 class CoreController < ApplicationController
   include InitHelper
 
-  ## required index function to load page
-  def index
-    puts 'Homepage'
-  end
-
   ## Calls helper function to initialize the API
   def initialize
     super 
     @@api = initialize_api
   end
+
+  ## required index function to load page
+  def index
+    recordings_json = @@api.get_recordings[:recordings]
+    puts recordings_json
+    
+    recordings_url = []
+    for recording in recordings_json
+      recordings_url.push(recording[:playback][:format][:url])
+    end
+    @recordings = recordings_url
+  end
+
+  def delete_recording
+      @@api.delete_recordings()
+  end 
 
   ## Create meeting
   def create_meeting(meeting_name,meeting_id,password)

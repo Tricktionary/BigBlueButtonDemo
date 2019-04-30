@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  #Set root of the application to be index view 
-  root :to => "core#index"
+    
+  resources :recordings
 
-  #POST REQUEST 
   post "create_and_join_meeting" => "core#create_and_join_meeting"
+  post "delete_recording" => "core#delete_recording"
+
+  root "core#index"
  end

@@ -33,5 +33,18 @@
  
 <div style=" margin-left:15%; margin-top:60px">
     <h2>List of recordings</h2>
-
+    <table class="ui celled table" style="width:81%">
+        <thead>
+            <th>Recordings</th>
+            <th>Action</th>
+        </thead>
+        <tbody>
+            <% @recordings.each do |recording| %>
+                <tr> 
+                    <td><a href=<%=recording%>> Link </a></td>
+                    <td><%= link_to "Delete", recording, method: :delete, data: {confirm: "Are you sure?"} %></td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
 </div>
