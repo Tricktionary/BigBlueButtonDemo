@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/Tricktionary/BigBlueButtonDemo.svg?style=svg)](https://circleci.com/gh/Tricktionary/BigBlueButtonDemo)
+
 # BigBlueButtonDemo
 
 This is a [rails](https://rubyonrails.org/) that show's the capabilities of the ruby [gem](https://rubygems.org/gems/bigbluebutton-api-ruby/versions/1.7.0)
