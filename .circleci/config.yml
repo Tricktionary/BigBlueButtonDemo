@@ -12,6 +12,10 @@ jobs:
           command: bundle -v
       
       - run:
+          name: Update Bundler
+          command: gem install bundler
+          
+      - run:
           name: Bundle Install
           command: bundle check || bundle install
       
