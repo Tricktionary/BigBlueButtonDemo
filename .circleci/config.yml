@@ -5,4 +5,30 @@ jobs:
       - image: circleci/ruby:2.6.1
     steps:
       - checkout
-      - run: echo "Hello World"
+      
+      # Which version of bundler?
+      - run:
+          name: Which bundler?
+          command: bundle -v
+      
+      # Restore bundle cache
+      - restore_cache:
+          keys:
+            - rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+            - rails-demo-bundle-v2-
+
+      - run:
+          name: Bundle Install
+          command: bundle check || bundle install
+      
+      - run:
+          name: Run rspec in parallel
+          command: |
+            bundle exec rspec --profile 10 \
+                              --format RspecJunitFormatter \
+                              --out test_results/rspec.xml \
+                              --format progress \
+                              $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+      # Save test results for timing analysis
+      - store_test_results:
+          path: test_results
