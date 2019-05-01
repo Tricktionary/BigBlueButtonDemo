@@ -23,4 +23,10 @@ jobs:
           command: sudo apt-get install nodejs
       - run:
           name: Test loading index page 
-          command: bundle exec rspec spec/controllers/core_controller_spec.rb:5
+          command: bundle exec rspec spec/controllers/accounts_controller_spec.rb:6  
+      - run:
+          name: Test creating and joining a meeting
+          command: bundle exec rspec spec/controllers/accounts_controller_spec.rb:12
+      - run:
+          name: Test get recordings
+          command: bundle exec rspec spec/controllers/accounts_controller_spec.rb:26    
