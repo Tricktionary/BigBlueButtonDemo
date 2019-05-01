@@ -10,10 +10,14 @@ class CoreController < ApplicationController
     @@api = initialize_api
   end
 
-  ## required index function to load page
+  ## Required index function to load page
   def index
+    get_recordings()
+  end
+
+  ## Get recording and parse the JSON for relevant information
+  def get_recordings
     recordings_json = @@api.get_recordings[:recordings]
-    
     recordings_objects = []
     for recording in recordings_json
       recording_object = {}
@@ -25,10 +29,11 @@ class CoreController < ApplicationController
       recording_object['url'] = recording_url
 
       recordings_objects.push(recording_object)
-     end
+    end
     @recordings = recordings_objects
-  end
+  end 
 
+  ## Delete the recording
   def delete_recording()
     puts request.params[:recording_id]
     @@api.delete_recordings(request.params[:recording_id])
