@@ -20,5 +20,8 @@ jobs:
           command: bundle check || bundle install
       
       - run:
+          name: apt-get install nodejs
+          command: apt-get install nodejs
+      - run:
           name: Test loading index page 
           command: bundle exec rspec spec/controllers/core_controller_spec.rb:5
