@@ -29,22 +29,27 @@
  
 <div style=" margin-left:15%; margin-top:60px">
     <h2>List of recordings</h2>
-    <table class="ui celled table" style="width:81%">
-        <thead>
-            <th>Recordings</th>
-            <th>Action</th>
-        </thead>
-        <tbody>
-            <% @recordings.each do |recording| %>
-                <tr>
-                    <td data-url=<%=recording["url"]%> onclick="open_video(this)">
-                        <%=recording["id"]%> 
-                    </td>
-                    <td data-id=<%=recording["id"]%> onclick="delete_recording(this)">
-                        Delete
-                    </td>
-                </tr>
-            <% end %>
-        </tbody>
-    </table>
+    
+    <% if @recordings.length == 0 %>
+        <tr>There are currently no recording</tr>
+    <% else %>
+        <table class="ui celled table" style="width:81%">
+            <thead>
+                <th>Recordings</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+                <% @recordings.each do |recording| %>
+                    <tr>
+                        <td data-url=<%=recording["url"]%> onclick="open_video(this)">
+                            <%=recording["id"]%> 
+                        </td>
+                        <td data-id=<%=recording["id"]%> onclick="delete_recording(this)">
+                            Delete
+                        </td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+    <% end %>
 </div>
