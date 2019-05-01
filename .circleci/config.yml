@@ -6,6 +6,7 @@ jobs:
     steps:
       - checkout
       
+      # Which version of bundler?
       - run:
           name: Which bundler?
           command: bundle -v
@@ -23,8 +24,4 @@ jobs:
           command: sudo apt-get install nodejs
       - run:
           name: Test loading index page 
-          command: bundle exec rspec spec/controllers/accounts_controller_spec.rb:5  
-      - run:
-          name: Test creating and joining a meeting
-          command: bundle exec rspec spec/controllers/accounts_controller_spec.rb:11
- 
+          command: bundle exec rspec spec/controllers/core_controller_spec.rb:6
