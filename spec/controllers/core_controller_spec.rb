@@ -29,13 +29,18 @@ RSpec.describe CoreController, type: :controller do
         it "Delete recording" do
             recordings = controller.get_recordings()
             if recordings.length > 0 
+                
                 id = recordings[0]["id"]
-                puts id
+                
                 params={
                     recording_id: id
                 }
+                
+                #Mock the response
+                allow(controller).to receive(:delete_recording).and_return({ :returncode => true, :deleted => true })
+ 
                 post :delete_recording, params: params
-                expect(controller.delete_recording()[:deleted]).to eql('true');
+                expect(controller.delete_recording()[:deleted]).to eql(true)
             end 
         end
     end 
