@@ -2,7 +2,7 @@
 
 # BigBlueButtonDemo
 
-This is a [rails](https://rubyonrails.org/) that show's the capabilities of the ruby [gem](https://rubygems.org/gems/bigbluebutton-api-ruby/versions/1.7.0)
+This is a [rails](https://rubyonrails.org/) app that show's the capabilities of the ruby [gem](https://rubygems.org/gems/bigbluebutton-api-ruby/versions/1.7.0)
 
 ### How to run
 
