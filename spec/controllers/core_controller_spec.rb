@@ -9,6 +9,20 @@ RSpec.describe CoreController, type: :controller do
         end
     end
 
+    describe "GET /create" do
+        it "Render the create template" do
+            get :create
+            expect(response.status).to render_template("create")
+        end
+    end
+
+    describe "GET /join" do
+        it "Render the join template" do
+            get :join
+            expect(response.status).to render_template("join")
+        end
+    end
+
      describe "POST /create_and_join_meeting" do 
         it "Redirect user after creating a meeting" do 
             params = {
