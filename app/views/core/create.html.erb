@@ -1,0 +1,37 @@
+<%= csrf_meta_tags %>
+<center><h1 style="padding-top:40px; padding-bottom:80px">BigBlueButton Test Application</h1></center>
+
+<div style=" margin-left:15%; width:70%">
+    <h2>Create meeting room</h2>
+    <div class="ui form">
+        <%= form_tag('create_and_join_meeting',method:"post")%>
+        <div class="field"> 
+            <label>Meeting Name</label>
+            <%= text_field_tag(:meeting_name,"",{placeholder:"Meeting Name",required:""})%><br>
+        </div>
+        <div class="field">
+            <label>Meeting ID</label>
+            <%= text_field_tag(:meeting_id,"",{placeholder:"Meeting ID",required:""})%><br>
+        </div>
+        <div class="field"> 
+            <label>Name</label>
+            <%= text_field_tag(:username,"",{placeholder:"Name",required:""})%><br>
+        </div>
+        <div class="field">
+            <label>Attendee Password</label>
+            <%= password_field_tag(:user_password,"",{placeholder:"Attendee Password",required:""})%><br>
+        </div>
+        <div class="field">
+            <label>Moderator Password</label>
+            <%= password_field_tag(:moderator_password,"",{placeholder:"Moderator Password",required:""})%><br>
+        </div>
+        <div style="margin-top:20px"> 
+            <%= submit_tag("Submit", class: "ui button green",)%>
+            <a  class ="white" href="/">
+                <div class="ui button green"> Back </div>
+            </a>
+        </div>
+         
+    </div>
+</div>
+ 

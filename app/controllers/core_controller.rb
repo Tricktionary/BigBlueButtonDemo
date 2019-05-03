@@ -15,6 +15,12 @@ class CoreController < ApplicationController
     get_recordings()
   end
 
+  def create
+  end
+
+  def join
+  end
+
   ## Get recording and parse the JSON for relevant information
   def get_recordings
     recordings_json = @@api.get_recordings[:recordings]
@@ -40,11 +46,11 @@ class CoreController < ApplicationController
   end 
 
   ## Create meeting
-  def create_meeting(meeting_name,meeting_id,password)
+  def create_meeting(meeting_name,meeting_id,user_password,moderator_password)
     #Default params pulled from the api docs
     options = {
-      :attendeePW => password,
-      :moderatorPW => "123",
+      :attendeePW => user_password,
+      :moderatorPW => moderator_password,
       :welcome => "Whats up!",
       :dialNumber => 5190909090,
       :voiceBridge => 76543,
@@ -58,7 +64,12 @@ class CoreController < ApplicationController
   end 
 
   ## Join meeting
-  def join_meeting(meeting_id,username,password)
+  def join_meeting(meeting_id = "",username = "",password="")
+    if params
+      meeting_id = params[:meeting_id]
+      username = params[:username]
+      password = params[:password]
+    end
     url = @@api.join_meeting_url(meeting_id,username,password)
     redirect_to url
   end 
@@ -68,13 +79,14 @@ class CoreController < ApplicationController
     meeting_id = params[:meeting_id]
     meeting_name = params[:meeting_name]
     username = params[:username]
-    password = params[:password]
+    user_password = params[:user_password]
+    moderator_password = params[:moderator_password]
 
     if @@api.is_meeting_running?(meeting_id)
        join_meeting(meeting_id,username,password)
     else
-      create_meeting(meeting_name,meeting_id,password)
-      join_meeting(meeting_id,username,'123')
+      create_meeting(meeting_name,meeting_id,user_password,moderator_password)
+      join_meeting(meeting_id,username,moderator_password)
     end
      
   end
