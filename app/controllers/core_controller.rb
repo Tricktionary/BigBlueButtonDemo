@@ -35,8 +35,8 @@ class CoreController < ApplicationController
 
   ## Delete the recording
   def delete_recording()
-    puts request.params[:recording_id]
-    @@api.delete_recordings(request.params[:recording_id])
+    puts params[:recording_id]
+    @@api.delete_recordings(params[:recording_id])
   end 
 
   ## Create meeting
@@ -65,10 +65,10 @@ class CoreController < ApplicationController
 
   ## Create and join meeting
   def create_and_join_meeting
-    meeting_id = request.params[:meeting_id]
-    meeting_name = request.params[:meeting_name]
-    username = request.params[:username]
-    password = request.params[:password]
+    meeting_id = params[:meeting_id]
+    meeting_name = params[:meeting_name]
+    username = params[:username]
+    password = params[:password]
 
     if @@api.is_meeting_running?(meeting_id)
        join_meeting(meeting_id,username,password)
